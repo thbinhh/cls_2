@@ -1,14 +1,14 @@
 from django.shortcuts import render
-import snowflake.connector
+# import snowflake.connector
 from transformers import pipeline
-from snowflake.connector.pandas_tools import pd_writer
+# from snowflake.connector.pandas_tools import pd_writer
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from textblob import TextBlob
 import nltk
 import pandas as pd
 import json
 import re
-import snowflake.connector as sl
+# import snowflake.connector as sl
 # from cleantext import remove_emoji
 import emoji
 
@@ -69,23 +69,23 @@ def sentiment_analysis_pipeline(text):
 
 def index(request):
     if request.method == "POST":
-      topic = request.POST["topic"]
-      ctx = snowflake.connector.connect(
-         user='hoangnb2501',
-         password='Hoang2501',
-         account='jq26585.southeast-asia.azure',
-         warehouse='WH1',
-         database='TWITTER',
-         schema='PUBLIC'
-      )
-      nltk.download('vader_lexicon')
-      cur = ctx.cursor()
-      sql = f"select TWEETID, CONTENT, SENTIMENT from TWITTER_TEST_2 where SENTIMENT is null and topic = '{topic}';"
-      tweets = cur.execute(sql).fetchall()
-      for i, t in enumerate(tweets):
-         sentiment = sentiment_analysis(t[1])
-         updatedSql = f"update TWITTER_TEST_2 set SENTIMENT = '{sentiment}' where TWEETID = '{t[0]}'"
-         cur.execute(updatedSql)
+      # topic = request.POST["topic"]
+      # ctx = snowflake.connector.connect(
+      #    user='hoangnb2501',
+      #    password='Hoang2501',
+      #    account='jq26585.southeast-asia.azure',
+      #    warehouse='WH1',
+      #    database='TWITTER',
+      #    schema='PUBLIC'
+      # )
+      # nltk.download('vader_lexicon')
+      # cur = ctx.cursor()
+      # sql = f"select TWEETID, CONTENT, SENTIMENT from TWITTER_TEST_2 where SENTIMENT is null and topic = '{topic}';"
+      # tweets = cur.execute(sql).fetchall()
+      # for i, t in enumerate(tweets):
+      #    sentiment = sentiment_analysis(t[1])
+      #    updatedSql = f"update TWITTER_TEST_2 set SENTIMENT = '{sentiment}' where TWEETID = '{t[0]}'"
+      #    cur.execute(updatedSql)
       params = {'places_data': "Phan lop thanh cong"}
       return render(request, "result.html", params)
     return render(request, 'home.html')
