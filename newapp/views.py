@@ -69,24 +69,24 @@ def sentiment_analysis_pipeline(text):
 
 def index(request):
     if request.method == "POST":
-      topic = request.POST["topic"]
-      ctx = snowflake.connector.connect(
-         user='hoangnb2501',
-         password='Hoang2501',
-         account='jq26585.southeast-asia.azure',
-         warehouse='WH1',
-         database='TWITTER',
-         schema='PUBLIC'
-      )
-      nltk.download('vader_lexicon')
-      cur = ctx.cursor()
-      sql = f"select TWEETID, CONTENT, SENTIMENT from TWITTER_TEST_2 where SENTIMENT is null and topic = '{topic}';"
-      tweets = cur.execute(sql).fetchall()
-      for i, t in enumerate(tweets):
-         sentiment = sentiment_analysis(t[1])
-         updatedSql = f"update TWITTER_TEST_2 set SENTIMENT = '{sentiment}' where TWEETID = '{t[0]}'"
-         cur.execute(updatedSql)
-      params = {'places_data': "Phan lop thanh cong"}
-      return render(request, "result.html", params)
+      # topic = request.POST["topic"]
+      # ctx = snowflake.connector.connect(
+      #    user='hoangnb2501',
+      #    password='Hoang2501',
+      #    account='jq26585.southeast-asia.azure',
+      #    warehouse='WH1',
+      #    database='TWITTER',
+      #    schema='PUBLIC'
+      # )
+      # nltk.download('vader_lexicon')
+      # cur = ctx.cursor()
+      # sql = f"select TWEETID, CONTENT, SENTIMENT from TWITTER_TEST_2 where SENTIMENT is null and topic = '{topic}';"
+      # tweets = cur.execute(sql).fetchall()
+      # for i, t in enumerate(tweets):
+      #    sentiment = sentiment_analysis(t[1])
+      #    updatedSql = f"update TWITTER_TEST_2 set SENTIMENT = '{sentiment}' where TWEETID = '{t[0]}'"
+      #    cur.execute(updatedSql)
+      # params = {'places_data': "Phan lop thanh cong"}
+      return render(request, "index.html", {})
     return render(request, 'home.html')
    
