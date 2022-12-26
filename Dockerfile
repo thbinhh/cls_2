@@ -1,1 +1,0 @@
-RUN ln -s libcrypto.so.1.1 /usr/lib/libcrypto.so
