@@ -82,10 +82,10 @@ def index(request):
       cur = ctx.cursor()
       sql = f"select TWEETID, CONTENT, SENTIMENT from TWITTER_TEST_2 where SENTIMENT is null and topic = '{topic}';"
       tweets = cur.execute(sql).fetchall()
-      for i, t in enumerate(tweets):
-         sentiment = sentiment_analysis(t[1])
-         updatedSql = f"update TWITTER_TEST_2 set SENTIMENT = '{sentiment}' where TWEETID = '{t[0]}'"
-         cur.execute(updatedSql)
+      # for i, t in enumerate(tweets):
+      #    sentiment = sentiment_analysis(t[1])
+      #    updatedSql = f"update TWITTER_TEST_2 set SENTIMENT = '{sentiment}' where TWEETID = '{t[0]}'"
+      #    cur.execute(updatedSql)
       # params = {'places_data': "Phan lop thanh cong"}
       return render(request, "index.html", {})
     return render(request, 'home.html')
