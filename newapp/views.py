@@ -70,14 +70,14 @@ def sentiment_analysis_pipeline(text):
 def index(request):
     if request.method == "POST":
       topic = request.POST["topic"]
-      ctx = snowflake.connector.connect(
-         user='hoangnb2501',
-         password='Hoang2501',
-         account='jq26585.southeast-asia.azure',
-         warehouse='WH1',
-         database='TWITTER',
-         schema='PUBLIC'
-      )
+      # ctx = snowflake.connector.connect(
+      #    user='hoangnb2501',
+      #    password='Hoang2501',
+      #    account='jq26585.southeast-asia.azure',
+      #    warehouse='WH1',
+      #    database='TWITTER',
+      #    schema='PUBLIC'
+      # )
       # nltk.download('vader_lexicon')
       # cur = ctx.cursor()
       # sql = f"select TWEETID, CONTENT, SENTIMENT from TWITTER_TEST_2 where SENTIMENT is null and topic = '{topic}';"
